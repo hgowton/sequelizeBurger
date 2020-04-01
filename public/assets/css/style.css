@@ -1,0 +1,38 @@
+body {
+    background: url("../img/burgerBackground.png");
+    font-family: 'Sen', sans-serif;
+}
+
+
+ul {
+    background-color: #FFF2A9;
+    line-height: 18px;
+    padding: 5px;
+    font-family: 'Sen', sans-serif;
+}
+
+.title {
+    font-size: 35px;
+    letter-spacing: 2px;
+    font-family: 'Baloo 2', cursive;
+    margin-top: 15px;
+    text-align: center;
+    text-shadow: 0px 0px 3px white;
+}
+
+.directions {
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: 'Baloo 2', cursive;
+    text-align: center;
+    background-color: #FFF2A9;
+}
+#order {
+    margin: 15px 60px 5px 60px;
+}
+
+#burg {
+    margin: 2px 60px 0px 60px;
+    background-color: #A9E1FF; 
+    padding: 4px;
+}
