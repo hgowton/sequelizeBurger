@@ -1,29 +1,30 @@
-//Import ORM to create functions that will interact with the burgers_db;
-var orm = require("../config/orm.js");
-
-// code that will call the ORM functions using burger specific input for the ORM.
-var burgers = {
-    selectAll: function(cb) {
-        orm.selectAll("burgers", function(res) {
-            cb(res);
+//Creates a Burgers table with columns for burger_name and devoured
+//Based on Week 15 Sequelize -- Activity 14 -- models -- post.js
+module.exports = function(sequelize, DataTypes) {
+    var Burgers = sequelize.define("Burgers", {
+        burger_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        devoured: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        }
+    });
+    
+    Burgers.associate = function(models) {
+        //The burger belongs to a customer
+        //A burger can't be created without a customer due to the foreign key constraint
+        Burgers.belongsTo(models.Customer, {
+            foreignKey: {
+                allowNull: false
+            }
         });
-    },
-    insertOne: function(cols, vals, cb) {
-        orm.insertOne("burgers", cols, vals, function(res) {
-            cb(res);
-        });
-    },
-    updateOne: function(objColVals, condition, cb) {
-        orm.updateOne("burgers", objColVals, condition, function(res) {
-            cb(res);
-        });
-    },
-    cancelOne: function(condition, cb) {
-        orm.cancelOne("burgers", condition, function(res) {
-            cb(res);
-        });
-    }
+    };
+    
+    return Burgers;
 };
-
-//Export the database functions for the controller (burgersController.js)
-module.exports = burgers;
